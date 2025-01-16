@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">FixFlow</string>
+    <string name="issue_title">Issue Title</string>
+    <string name="checklist_step">Checklist Step</string>
+    <string name="case_name">Case Name</string>
+    <string name="user_login">User Login</string>
+    <string name="admin_login">Admin Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="ncpb_logo">NCPB logo</string>
+    <string name="fixflow">FixFlow</string>
+    <string name="add_case">Add Case</string>
+    <string name="enter_issue_name">Enter Issue Name</string>
+    <string name="submit">Submit</string>
+    <string name="enter_checklist_step">Enter Checklist Step</string>
+    <string name="enter_case_name">Enter Case Name</string>
+</resources>

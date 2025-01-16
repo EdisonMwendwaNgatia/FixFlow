@@ -1,0 +1,21 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etIssueName"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:hint="@string/enter_issue_name"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnSubmitIssue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/submit" />
+</LinearLayout>

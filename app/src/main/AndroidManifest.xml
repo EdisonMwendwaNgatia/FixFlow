@@ -1,0 +1,61 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.fixflow">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FixFlow"
+        tools:targetApi="31">
+
+        <!-- Set SplashScreenActivity as the launcher activity -->
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FixFlow">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Other activities -->
+        <activity android:name=".WelcomeActivity"
+            android:exported="true"/>
+        <activity android:name=".UserLoginActivity"
+            android:exported="true"/>
+        <activity android:name=".AdminLoginActivity"
+            android:exported="true"/>
+        <activity android:name=".UserDashboardActivity"
+            android:exported="true"/>
+        <activity android:name=".AdminDashboardActivity"
+            android:exported="true"/>
+        <activity android:name=".IssueActivity"
+            android:exported="true"/>
+        <activity android:name=".AddCasesActivity"
+            android:exported="true"/>
+        <activity android:name=".SolutionActivity"
+            android:exported="true"/>
+        <activity android:name=".AddIssueActivity"
+            android:exported="true"/>
+        <activity android:name=".AddChecklistActivity"
+            android:exported="true"/>
+        <activity android:name=".CaseIssuesActivity"
+            android:exported="true"/>
+        <activity android:name=".ChecklistActivity"
+            android:exported="true"/>
+        <activity android:name=".NewIssueActivity"
+            android:exported="true"/>
+        <activity android:name=".NewChecklistActivity"
+            android:exported="true"/>
+
+        <!-- Add your other activities here -->
+
+    </application>
+
+</manifest>
