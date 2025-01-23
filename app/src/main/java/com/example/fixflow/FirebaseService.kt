@@ -1,5 +1,6 @@
 package com.example.fixflow
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
@@ -84,15 +85,22 @@ object FirebaseService {
             }
     }
 
-    fun getChecklist(caseId: String, issueId: String, callback: (List<ChecklistStep>?, String?) -> Unit) {
-        val checklistRef = database.reference.child("cases").child(caseId).child("issues").child(issueId).child("checklistSteps")
+    fun getChecklist(caseId: String, issueId: String, callback: (List<String>?, String?) -> Unit) {
+        val checklistRef = database.reference
+            .child("cases")
+            .child(caseId)
+            .child("issues")
+            .child(issueId)
+            .child("checklistSteps")
+
         checklistRef.get()
             .addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
-                    val steps = snapshot.children.mapNotNull { it.getValue(ChecklistStep::class.java) }
+                    // Get all checklist steps as strings (ignore the step IDs)
+                    val steps = snapshot.children.mapNotNull { it.getValue(String::class.java) }
                     callback(steps, null)
                 } else {
-                    callback(emptyList(), "No checklist steps found for this issue")
+                    callback(emptyList(), "No checklist steps found for this issue.")
                 }
             }
             .addOnFailureListener { exception ->
@@ -100,19 +108,58 @@ object FirebaseService {
             }
     }
 
+
     fun addCase(caseName: String, createdBy: String, callback: (Boolean, String?) -> Unit) {
+        // Create a reference to the "cases" node and generate a unique key for the new case
         val caseRef = database.reference.child("cases").push()
+
+        // Prepare the case data to be saved
         val caseData = hashMapOf(
             "name" to caseName,
             "createdAt" to System.currentTimeMillis(),
             "createdBy" to createdBy
         )
 
+        // Set the case data to Firebase
         caseRef.setValue(caseData)
-            .addOnSuccessListener { callback(true, caseRef.key) }
-            .addOnFailureListener { callback(false, null) }
+            .addOnSuccessListener {
+                // Log success and return the unique case ID
+                Log.d("AddCase", "Case added successfully with ID: ${caseRef.key}")
+                callback(true, caseRef.key) // Successfully added case, return the case ID
+            }
+            .addOnFailureListener { exception ->
+                // Log failure and provide the error message
+                Log.e("AddCase", "Failed to add case: ${exception.message}")
+                callback(false, null) // Failed to add case, return null as the case ID
+            }
     }
 
+
+    fun updateChecklistStep(
+        caseId: String,
+        issueId: String,
+        checklistStepId: String,
+        updatedDescription: String,
+        callback: (Boolean) -> Unit
+    ) {
+        // Reference to the specific checklist step in the Firebase database
+        val checklistStepRef = database.reference
+            .child("cases")
+            .child(caseId)
+            .child("issues")
+            .child(issueId)
+            .child("checklistSteps")
+            .child(checklistStepId)
+
+        // Update the value of the checklist step ID
+        checklistStepRef.setValue(updatedDescription)
+            .addOnSuccessListener {
+                callback(true) // Call the callback with success
+            }
+            .addOnFailureListener {
+                callback(false) // Call the callback with failure
+            }
+    }
 
     fun getCases(callback: (List<Case>?, String?) -> Unit) {
         val casesRef = database.reference.child("cases")
@@ -123,6 +170,30 @@ object FirebaseService {
                     callback(cases, null)
                 } else {
                     callback(emptyList(), "No cases found")
+                }
+            }
+            .addOnFailureListener { exception ->
+                callback(null, exception.message)
+            }
+    }
+
+    fun getChecklistStep(caseId: String, issueId: String, checklistStepId: String, callback: (String?, String?) -> Unit) {
+        val checklistRef: DatabaseReference = database.reference
+            .child("cases")
+            .child(caseId)
+            .child("issues")
+            .child(issueId)
+            .child("checklistSteps")
+            .child(checklistStepId)
+
+        checklistRef.get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.exists()) {
+                    // Retrieve the step description from the database
+                    val checklistStep = snapshot.getValue(String::class.java)
+                    callback(checklistStep, null)
+                } else {
+                    callback(null, "Checklist step not found")
                 }
             }
             .addOnFailureListener { exception ->
@@ -149,10 +220,15 @@ object FirebaseService {
     private fun DataSnapshot.toIssue(issueId: String?): Issue? {
         val name = this.child("name").getValue(String::class.java)
         val description = this.child("description").getValue(String::class.java) ?: ""
-        val title = this.child("title").getValue(String::class.java) ?: ""
         val createdAt = this.child("createdAt").getValue(Long::class.java) ?: System.currentTimeMillis()
         val createdBy = this.child("createdBy").getValue(String::class.java) ?: ""
+        val checklistSteps = this.child("checklistSteps").children.map { it.getValue(String::class.java) ?: "" } // Correctly map the checklist steps
 
-        return if (name != null && issueId != null) Issue(issueId, name, description, title, createdAt, createdBy) else null
+        return if (name != null && issueId != null) {
+            Issue(issueId, name, description, createdAt, createdBy, checklistSteps)
+        } else {
+            null
+        }
     }
+
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- EditText for the checklist step -->
+    <EditText
+        android:id="@+id/etChecklistStep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter updated checklist step"
+        android:padding="16dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Button to save the updated step -->
+    <Button
+        android:id="@+id/btnUpdateChecklist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Checklist Step"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

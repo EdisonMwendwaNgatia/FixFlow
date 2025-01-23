@@ -1,43 +1,57 @@
 package com.example.fixflow
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class SolutionActivity : AppCompatActivity() {
-    private lateinit var rvChecklist: RecyclerView // Class-level property for rvChecklist
+    private lateinit var rvChecklist: RecyclerView
     private lateinit var issueId: String
+    private lateinit var caseId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solution)
 
-        // Initialize rvChecklist
-        rvChecklist = findViewById(R.id.rvChecklist)
+        // Retrieve intent extras
+        caseId = intent.getStringExtra("caseId") ?: ""
         issueId = intent.getStringExtra("issueId") ?: ""
 
-        rvChecklist.layoutManager = LinearLayoutManager(this)
-        rvChecklist.adapter = ChecklistAdapter(emptyList()) // Start with an empty list
+        if (caseId.isEmpty() || issueId.isEmpty()) {
+            Toast.makeText(this, "Invalid case or issue ID", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
 
-        // Fetch and display the checklist
-        fetchChecklist()
+        // Initialize RecyclerView
+        rvChecklist = findViewById(R.id.rvChecklist)
+        rvChecklist.layoutManager = LinearLayoutManager(this)
+        rvChecklist.adapter = ChecklistAdapter(emptyList()) // Set an empty list initially
+
+        // Fetch checklist steps
+        fetchChecklistSteps()
     }
 
-    private fun fetchChecklist() {
-        val caseId = intent.getStringExtra("caseId") ?: ""
+    private fun fetchChecklistSteps() {
         FirebaseService.getChecklist(caseId, issueId) { fetchedSteps, error ->
             if (error == null) {
                 fetchedSteps?.let { steps ->
-                    // Update the adapter with the fetched checklist steps
-                    (rvChecklist.adapter as ChecklistAdapter).apply {
-                        (this as ChecklistAdapter).updateData(steps)
+                    if (steps.isNotEmpty()) {
+                        Log.d("SolutionActivity", "Checklist steps fetched: $steps")
+                        // Update RecyclerView with the checklist
+                        (rvChecklist.adapter as ChecklistAdapter).updateData(steps)
+                    } else {
+                        Toast.makeText(this, "No checklist steps for this issue.", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
-                Toast.makeText(this, "Error: $error", Toast.LENGTH_SHORT).show()
+                Log.e("SolutionActivity", "Error fetching checklist: $error")
+                Toast.makeText(this, "Error fetching checklist: $error", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 }

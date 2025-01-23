@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="Save"
         android:textColor="#ffffff"
-        android:background="@color/colorPrimary"
+        android:background="@color/black"
         app:layout_constraintTop_toBottomOf="@id/etChecklistStep"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

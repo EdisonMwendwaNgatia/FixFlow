@@ -30,7 +30,6 @@ class AdminDashboardActivity : AppCompatActivity() {
                     // Navigate to CaseIssuesActivity when a case is clicked
                     val intent = Intent(this, CaseIssuesActivity::class.java)
                     intent.putExtra("caseId", case.id)
-                    intent.putExtra("caseName", case.name)
                     startActivity(intent)
                 }
             } else {

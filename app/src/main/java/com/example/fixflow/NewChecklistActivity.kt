@@ -1,4 +1,3 @@
-// NewChecklistActivity.kt
 package com.example.fixflow
 
 import android.os.Bundle
@@ -21,18 +20,18 @@ class NewChecklistActivity : AppCompatActivity() {
         etChecklistStep = findViewById(R.id.etChecklistStep)
         btnSaveChecklist = findViewById(R.id.btnSaveChecklist)
 
-        // Get the caseId and issueId passed from NewIssueActivity
+        // Get the caseId and issueId passed from the previous activity
         caseId = intent.getStringExtra("caseId")
         issueId = intent.getStringExtra("issueId")
 
         btnSaveChecklist.setOnClickListener {
             val checklistStep = etChecklistStep.text.toString().trim()
-            if (checklistStep.isNotEmpty()) {
-                // Add the checklist step to Firebase
+
+            if (caseId != null && issueId != null && checklistStep.isNotEmpty()) {
                 FirebaseService.addChecklistStep(caseId!!, issueId!!, checklistStep) { success ->
                     if (success) {
-                        Toast.makeText(this, "Checklist step added", Toast.LENGTH_SHORT).show()
-                        finish() // Close this activity and return to previous one
+                        Toast.makeText(this, "Checklist step added successfully", Toast.LENGTH_SHORT).show()
+                        etChecklistStep.text.clear() // Clear the input field for the next entry
                     } else {
                         Toast.makeText(this, "Failed to add checklist step", Toast.LENGTH_SHORT).show()
                     }

@@ -6,6 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class IssueActivity : AppCompatActivity() {
     private lateinit var rvIssues: RecyclerView // Class-level property for rvIssues
@@ -17,12 +20,15 @@ class IssueActivity : AppCompatActivity() {
 
         // Initialize rvIssues
         rvIssues = findViewById(R.id.rvIssues)
+        // Retrieve caseId from the intent
         caseId = intent.getStringExtra("caseId") ?: ""
 
         rvIssues.layoutManager = LinearLayoutManager(this)
         rvIssues.adapter = IssueAdapter(emptyList()) { issue ->
+            // Handle issue item click
             val intent = Intent(this, SolutionActivity::class.java)
             intent.putExtra("issueId", issue.id)
+            intent.putExtra("caseId", caseId)  // Pass the caseId here as well
             startActivity(intent)
         }
 
@@ -36,7 +42,7 @@ class IssueActivity : AppCompatActivity() {
                 fetchedIssues?.let { issues ->
                     // Update the adapter with the fetched issues
                     (rvIssues.adapter as IssueAdapter).apply {
-                        (this as IssueAdapter).updateData(issues)
+                        updateData(issues)
                     }
                 }
             } else {
