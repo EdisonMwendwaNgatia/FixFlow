@@ -1,24 +1,68 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/spotify_black">
 
-    <EditText
-        android:id="@+id/etChecklistStep"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:autofillHints="checklist steps"
-        android:layout_gravity="center_horizontal"
-        android:hint="@string/enter_checklist_step"
-        android:inputType="text" />
-
-    <Button
-        android:id="@+id/btnSubmitChecklist"
-        android:layout_width="250dp"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:text="@string/submit" />
-</LinearLayout>
+        android:background="@color/spotify_black">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_step"
+                android:textColor="@color/spotify_white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_checklist_step"
+            android:textColorHint="@color/white"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/spotify_green"
+            app:hintTextColor="@color/spotify_green">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etChecklistStep"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="top|start"
+                android:inputType="text"
+                android:textColor="@color/spotify_white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmitChecklist"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:text="@string/submit"
+            android:textColor="@color/spotify_white"
+            app:backgroundTint="@color/spotify_green"
+            app:cornerRadius="24dp" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

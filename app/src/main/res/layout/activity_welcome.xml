@@ -6,17 +6,29 @@
     android:gravity="center"
     android:padding="16dp">
 
+    <TextView
+        android:layout_width="261dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="Fix Flow"
+        android:textStyle="italic"
+        android:textColor="@color/white"
+        android:layout_marginBottom="50dp"
+        android:textSize="32sp" />
+
     <Button
         android:id="@+id/btnUserLogin"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/user_login"
+        android:layout_marginTop="60dp"
         android:padding="12dp" />
 
     <Button
         android:id="@+id/btnAdminLogin"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"

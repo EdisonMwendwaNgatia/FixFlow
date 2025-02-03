@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.FixFlow" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.FixFlow" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/spotify_green</item>
+        <item name="colorPrimaryVariant">@color/spotify_dark_gray</item>
+        <item name="colorOnPrimary">@color/spotify_white</item>
+        <item name="android:windowBackground">@color/spotify_black</item>
+        <item name="android:statusBarColor">@color/spotify_black</item>
+
+        <!-- Button style -->
+        <item name="materialButtonStyle">@style/Widget.FixFlow.Button</item>
+    </style>
+
+    <style name="Widget.FixFlow.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/spotify_white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="backgroundTint">@color/spotify_green</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:elevation">4dp</item>
+    </style>
 </resources>

@@ -1,36 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/spotify_black"
+    android:padding="16dp"
     tools:context=".NewIssueActivity">
 
+    <!-- Title -->
+
     <!-- Issue Name Input -->
-    <android.widget.EditText
-        android:id="@+id/etIssueName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter issue name"
-        android:inputType="text"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp" />
+
+    <!-- Issue Description Input -->
+<!--    <EditText-->
+<!--        android:id="@+id/etIssueDescription"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Enter issue description"-->
+<!--        android:inputType="textMultiLine"-->
+<!--        android:minLines="3"-->
+<!--        android:gravity="top"-->
+<!--        android:padding="16dp"-->
+<!--        android:background="@color/spotify_dark_gray"-->
+<!--        android:textColor="@color/spotify_white"-->
+<!--        android:textColorHint="@color/spotify_light_gray"-->
+<!--        android:fontFamily="sans-serif"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/etIssueName"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:importantForAutofill="no"/>-->
 
     <!-- Save Button -->
-    <android.widget.Button
-        android:id="@+id/btnSaveIssue"
-        android:layout_width="0dp"
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:textColor="#ffffff"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/etIssueName"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="52dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/new_issue"
+        android:textColor="@color/spotify_white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/etIssueName"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/etIssueName"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:background="@color/spotify_dark_gray"
+        android:fontFamily="sans-serif-medium"
+        android:hint="@string/enter_issue_name"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textColor="@color/spotify_white"
+        android:textColorHint="@color/spotify_light_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        android:padding="16dp" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSaveIssue"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/spotify_green"
+        android:fontFamily="sans-serif-medium"
+        android:padding="16dp"
+        android:text="@string/save"
+        android:textColor="@color/spotify_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etIssueName"
+        android:layout_marginTop="16dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

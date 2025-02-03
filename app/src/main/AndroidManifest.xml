@@ -19,7 +19,7 @@
 
         <activity
             android:name=".WelcomeActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,49 +29,47 @@
 
 
         <activity android:name=".UserLoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".AdminLoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".UserDashboardActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".AdminDashboardActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".IssueActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".AddCasesActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".SolutionActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".AddIssueActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".AddChecklistActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".CaseIssuesActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".ChecklistActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".NewIssueActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".NewChecklistActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
         <activity android:name=".UpdateChecklistActivity"
-            android:theme="@style/Theme.AppCompat.DayNight"
+            android:theme="@style/Theme.FixFlow"
             android:exported="true"/>
-
-
     </application>
 
 </manifest>

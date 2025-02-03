@@ -3,32 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/spotify_black">
 
-    <android.widget.EditText
+    <EditText
         android:id="@+id/etChecklistStep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter checklist step"
         android:inputType="text"
         android:padding="16dp"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:background="@color/spotify_dark_gray"
+        android:textColor="@color/spotify_white"
+        android:textColorHint="@color/spotify_light_gray"
+        android:fontFamily="sans-serif-medium"/>
 
-    <android.widget.Button
+    <Button
         android:id="@+id/btnSaveChecklist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save"
-        android:textColor="#ffffff"
-        android:background="@color/black"
+        android:textColor="@color/spotify_black"
+        android:backgroundTint="@color/spotify_green"
         android:layout_marginTop="24dp"
-        android:padding="16dp" />
+        android:padding="16dp"
+        android:fontFamily="sans-serif-medium"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChecklist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:background="@color/spotify_black"/>
 
 </LinearLayout>

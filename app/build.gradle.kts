@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.constraintlayout)
+    implementation("com.google.android.material:material:1.13.0-alpha10")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
